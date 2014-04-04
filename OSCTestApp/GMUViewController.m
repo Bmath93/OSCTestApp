@@ -71,6 +71,17 @@
 
 - (void)takeMessage:(F53OSCMessage *)message {
     NSLog(@"in takeMessage:message");
+    NSString *addressPattern = message.addressPattern;
+    NSArray *arguments = message.arguments;
+    
+    if ([addressPattern isEqualToString:@"/path1/message1"]){
+        NSLog(@"intercepted message1");
+        //[self changeMessageDisplayLabelTo:(int)[arguments objectAtIndex:0]];
+    }
+    else if ([addressPattern isEqualToString:@"/path1/message2"]){
+        NSLog(@"intercepted message2");
+        //[self changeMessageDisplayLabelTo:(int)[arguments objectAtIndex:0]];
+    }
 }
 
 - (void)changeMessageDisplayLabelTo:(int)recievedInt{
