@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "F53OSC.h"
 
-@interface GMUViewController : UIViewController
+@interface GMUViewController : UIViewController <F53OSCPacketDestination>
 
 @end
