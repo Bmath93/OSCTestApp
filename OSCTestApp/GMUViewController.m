@@ -39,6 +39,7 @@
                                                    arguments:@[@1]];
     self.message2 = [F53OSCMessage messageWithAddressPattern:@"/path1/message2"
                                                    arguments:@[@2]];
+    NSLog(@"beginning app");
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,7 +52,9 @@
     self.oscServer = [[F53OSCServer alloc] init];
     [self.oscServer setPort:3000];
     [self.oscServer setDelegate:self];
-    [self.oscServer startListening];
+    BOOL success = [self.oscServer startListening];
+    if (success){NSLog(@"success");}
+    else{NSLog(@"failure");};
 }
 
 - (IBAction)sendMessage1:(id)sender {
