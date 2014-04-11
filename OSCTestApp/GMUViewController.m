@@ -11,6 +11,11 @@
 @interface GMUViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *messageDisplayLabel;
+@property (weak, nonatomic) IBOutlet UITextField *userAdress;
+@property (weak, nonatomic) IBOutlet UITextField *userSendPort;
+@property (weak, nonatomic) IBOutlet UITextField *userReceivePort;
+
+- (IBAction)readyToSend:(id)sender;
 
 - (IBAction)beginListening:(id)sender;
 
@@ -35,10 +40,12 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.oscClient = [[F53OSCClient alloc] init];
+    NSArray *arguments1 = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:0], nil];
+    NSArray *arguments2 = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:1], nil];
     self.message1 = [F53OSCMessage messageWithAddressPattern:@"/path1/message1"
-                                                   arguments:@[@1]];
+                                                   arguments:arguments1];
     self.message2 = [F53OSCMessage messageWithAddressPattern:@"/path1/message2"
-                                                   arguments:@[@2]];
+                                                   arguments:arguments2];
     NSLog(@"beginning app");
 }
 
@@ -48,9 +55,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)readyToSend:(id)sender {
+}
+
 - (IBAction)beginListening:(id)sender {
     self.oscServer = [[F53OSCServer alloc] init];
-    [self.oscServer setPort:3000];
+    NSString *portText = [self.userReceivePort text];
+    [self.oscServer setPort:[portText integerValue]];
     [self.oscServer setDelegate:self];
     BOOL success = [self.oscServer startListening];
     if (success){NSLog(@"success");}
@@ -60,27 +71,27 @@
 - (IBAction)sendMessage1:(id)sender {
     //[self changeMessageDisplayLabelTo:1];
     NSLog(@"message1 sent");
-    [self.oscClient sendPacket:self.message1 toHost:@"localhost" onPort:3000];
+    [self.oscClient sendPacket:self.message1 toHost:[self.userAdress text] onPort:[[self.userSendPort text] integerValue]];
 }
 
 - (IBAction)sendMessage2:(id)sender {
     //[self changeMessageDisplayLabelTo:2];
     NSLog(@"message2 sent");
-    [self.oscClient sendPacket:self.message2 toHost:@"localhost" onPort:3000];
+    [self.oscClient sendPacket:self.message2 toHost:[self.userAdress text] onPort:[[self.userSendPort text] integerValue]];
 }
 
 - (void)takeMessage:(F53OSCMessage *)message {
     NSLog(@"in takeMessage:message");
     NSString *addressPattern = message.addressPattern;
     NSArray *arguments = message.arguments;
-    
+    NSNumber *receivedInt = [arguments objectAtIndex:0];
+    NSLog(@"%i",[receivedInt intValue]);
+    [self changeMessageDisplayLabelTo:[receivedInt intValue]];
     if ([addressPattern isEqualToString:@"/path1/message1"]){
         NSLog(@"intercepted message1");
-        //[self changeMessageDisplayLabelTo:(int)[arguments objectAtIndex:0]];
     }
     else if ([addressPattern isEqualToString:@"/path1/message2"]){
         NSLog(@"intercepted message2");
-        //[self changeMessageDisplayLabelTo:(int)[arguments objectAtIndex:0]];
     }
 }
 
