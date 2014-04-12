@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		333A31F418F9BAE200FE230A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333A31F318F9BAE200FE230A /* CFNetwork.framework */; };
+		333A31F618F9BAE900FE230A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333A31F518F9BAE900FE230A /* Security.framework */; };
 		33DEDD8B18EF5B5700BC3048 /* F53OSCBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DEDD6C18EF5B5700BC3048 /* F53OSCBundle.m */; };
 		33DEDD8C18EF5B5700BC3048 /* F53OSCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DEDD6E18EF5B5700BC3048 /* F53OSCClient.m */; };
 		33DEDD8D18EF5B5700BC3048 /* F53OSCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DEDD7118EF5B5700BC3048 /* F53OSCMessage.m */; };
@@ -50,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		333A31F318F9BAE200FE230A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		333A31F518F9BAE900FE230A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		33DEDD6A18EF5B5700BC3048 /* F53OSC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = F53OSC.h; sourceTree = "<group>"; };
 		33DEDD6B18EF5B5700BC3048 /* F53OSCBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = F53OSCBundle.h; sourceTree = "<group>"; };
 		33DEDD6C18EF5B5700BC3048 /* F53OSCBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = F53OSCBundle.m; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				333A31F618F9BAE900FE230A /* Security.framework in Frameworks */,
+				333A31F418F9BAE200FE230A /* CFNetwork.framework in Frameworks */,
 				33EA993C18EF443700C2F8FD /* CoreGraphics.framework in Frameworks */,
 				33EA993E18EF443700C2F8FD /* UIKit.framework in Frameworks */,
 				33EA993A18EF443700C2F8FD /* Foundation.framework in Frameworks */,
@@ -190,6 +196,8 @@
 		33EA993818EF443700C2F8FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				333A31F518F9BAE900FE230A /* Security.framework */,
+				333A31F318F9BAE200FE230A /* CFNetwork.framework */,
 				33EA993918EF443700C2F8FD /* Foundation.framework */,
 				33EA993B18EF443700C2F8FD /* CoreGraphics.framework */,
 				33EA993D18EF443700C2F8FD /* UIKit.framework */,
@@ -290,6 +298,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Research Assistant [PureData]";
 				TargetAttributes = {
+					33EA993518EF443700C2F8FD = {
+						DevelopmentTeam = 67VAUJ2SN6;
+					};
 					33EA995618EF443700C2F8FD = {
 						TestTargetID = 33EA993518EF443700C2F8FD;
 					};
@@ -487,10 +498,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OSCTestApp/OSCTestApp-Prefix.pch";
 				INFOPLIST_FILE = "OSCTestApp/OSCTestApp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -500,10 +514,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OSCTestApp/OSCTestApp-Prefix.pch";
 				INFOPLIST_FILE = "OSCTestApp/OSCTestApp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
